@@ -4,24 +4,36 @@ import './index.css'
 import { RouterProvider } from 'react-router/dom'
 import { createBrowserRouter } from 'react-router'
 import RootLayout from './layout/RootLayout'
+import HomePage from './pages/HomePage/HomePage'
+import Apps from './pages/Apps/Apps'
+import InstallApps from './pages/InstallApps/InstallApps'
 
 
 const router = createBrowserRouter(
   [
     {
       path: '/',
-      element:<RootLayout></RootLayout>
-    },
-    {
-      path: '/apps',
-      element:<h1>Apps</h1>
+      element: <RootLayout></RootLayout>,
+      children: [
+        {
+          index: true,
+          element:<HomePage></HomePage>
+        },
+        {
+          path: '/apps',
+          element:<Apps></Apps>
+        },
+        {
+          path: '/installation',
+          element:<InstallApps></InstallApps>
+        }
+      ]
     }
   ]
 )
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <h1 className='text-7xl text-green-500'>Hello</h1>
     <RouterProvider router={router}></RouterProvider>
   </StrictMode>,
 )
